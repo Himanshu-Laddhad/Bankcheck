@@ -1,0 +1,75 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.installed.cfg
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# ── Virtual environments ───────────────────────────────────────
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ── Secrets & credentials ─────────────────────────────────────
+# .env contains API keys — NEVER commit this
+.env
+*.key
+secrets.toml
+
+# ── Caches ────────────────────────────────────────────────────
+.cache/
+*.cache
+__pycache__/
+
+# ── Logs ──────────────────────────────────────────────────────
+logs/
+*.log
+*.log.gz
+
+# ── Streamlit ─────────────────────────────────────────────────
+# Keep .streamlit/config.toml (theme) but not secrets
+.streamlit/secrets.toml
+
+# ── IDEs & editors ────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Testing ───────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── ML model downloads ────────────────────────────────────────
+# sentence-transformers downloads models here on first run
+# these are large and should not be committed
+.cache/huggingface/
+~/.cache/huggingface/
+sentence_transformers/
