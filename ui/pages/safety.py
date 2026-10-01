@@ -31,7 +31,7 @@ def render(result: PipelineResult):
     # ── Score Gauges ──────────────────────────────────────────────────────────
     if scores:
         section_divider("Institution Grades")
-        st.plotly_chart(build_score_gauge_row(scores[:6]), use_container_width=True)
+        st.plotly_chart(build_score_gauge_row(scores[:6]), width="stretch")
 
     # ── Score KPIs ────────────────────────────────────────────────────────────
     if scores:
@@ -57,14 +57,14 @@ def render(result: PipelineResult):
             "All inputs from US government data sources.",
             "info"
         )
-        st.plotly_chart(build_score_breakdown_bar(scores), use_container_width=True)
+        st.plotly_chart(build_score_breakdown_bar(scores), width="stretch")
 
     # ── FDIC Safety Table ─────────────────────────────────────────────────────
     if institutions:
         section_divider("FDIC Financial Safety Data")
         df = build_safety_table(institutions, banks)
         if not df.empty:
-            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, width="stretch", hide_index=True)
 
     # ── Credit Union Comparison ───────────────────────────────────────────────
     section_divider("Credit Unions vs Banks — Savings APY")
@@ -74,7 +74,7 @@ def render(result: PipelineResult):
         "info"
     )
     if credit_unions or banks:
-        st.plotly_chart(build_cu_vs_bank_comparison(credit_unions, banks), use_container_width=True)
+        st.plotly_chart(build_cu_vs_bank_comparison(credit_unions, banks), width="stretch")
 
     if credit_unions:
         import pandas as pd
@@ -88,14 +88,14 @@ def render(result: PipelineResult):
                 "Loan Rate": f"{cu.loan_rate:.2f}%" if cu.loan_rate else "N/A",
                 "NCUA Insured": "Yes",
             })
-        st.dataframe(pd.DataFrame(cu_rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(cu_rows), width="stretch", hide_index=True)
 
     # ── Full Score Table ──────────────────────────────────────────────────────
     if scores:
         section_divider("Full Scorecard Table")
         df = build_score_table(scores)
         if not df.empty:
-            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, width="stretch", hide_index=True)
 
     st.markdown(
         '<p style="color:#6B7280;font-size:0.75rem;margin-top:0.5rem;">'

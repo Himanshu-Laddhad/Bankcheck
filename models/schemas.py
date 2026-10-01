@@ -128,6 +128,7 @@ class PipelineResult(BaseModel):
     institutions: List[Institution] = []
     rates: List[RateRecord] = []
     fed_rates: List[FedRate] = []
+    fed_history: List[Dict[str, object]] = []   # [{'date': 'YYYY-MM-DD', 'value': float}], ascending
     complaint_summaries: List[ComplaintSummary] = []
     raw_complaints: List[Complaint] = []
     mortgage_summaries: List[MortgageSummary] = []

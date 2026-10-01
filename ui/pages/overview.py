@@ -118,7 +118,7 @@ def render(result: PipelineResult):
         df = pd.DataFrame(rows)
         st.dataframe(
             df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             column_config={
                 "Institution": st.column_config.TextColumn("Institution", width="medium"),

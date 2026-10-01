@@ -459,7 +459,7 @@ def _details_table(result: PipelineResult, banks: List[str]):
         rows.append(row)
 
     if rows:
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
     else:
         st.info("No data for selected banks.")
 
@@ -487,18 +487,18 @@ def render(result: PipelineResult):
     _section("Rate Intelligence")
     c1, c2 = st.columns(2, gap="medium")
     with c1:
-        st.plotly_chart(_radar_chart(banks), use_container_width=True)
+        st.plotly_chart(_radar_chart(banks), width="stretch")
     with c2:
-        st.plotly_chart(_bubble_savings_vs_cc(banks), use_container_width=True)
+        st.plotly_chart(_bubble_savings_vs_cc(banks), width="stretch")
     # Heatmap spans full width — spacer prevents title overlapping chart above
     st.markdown("<div style='margin-top:1.5rem'></div>", unsafe_allow_html=True)
-    st.plotly_chart(_rate_heatmap(banks), use_container_width=True)
+    st.plotly_chart(_rate_heatmap(banks), width="stretch")
 
     # ── COMPLAINT INTELLIGENCE ───────────────────────────────────────────
     _section("Complaint Intelligence")
     st.plotly_chart(
         _resolution_bar(result.complaint_summaries, banks),
-        use_container_width=True,
+        width="stretch",
     )
 
     # ── MORTGAGE & LENDING ───────────────────────────────────────────────
@@ -508,12 +508,12 @@ def render(result: PipelineResult):
         with c5:
             st.plotly_chart(
                 _mortgage_scatter(result.mortgage_summaries, banks),
-                use_container_width=True,
+                width="stretch",
             )
         with c6:
             st.plotly_chart(
                 _denial_stacked(result.mortgage_summaries, banks),
-                use_container_width=True,
+                width="stretch",
             )
     else:
         st.info("No mortgage data available for selected banks.")

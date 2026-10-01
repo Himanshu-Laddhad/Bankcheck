@@ -60,7 +60,7 @@ def render(result: PipelineResult):
         "This shows which banks have the most problems with which products.",
         "info"
     )
-    st.plotly_chart(build_complaint_heatmap(complaints, banks), use_container_width=True)
+    st.plotly_chart(build_complaint_heatmap(complaints, banks), width="stretch")
 
     # ── Resolution ────────────────────────────────────────────────────────────
     section_divider("Resolution Rate — Who Actually Helps Customers")
@@ -69,11 +69,11 @@ def render(result: PipelineResult):
         "A low relief rate means the bank closes complaints without fixing the problem.",
         "warning"
     )
-    st.plotly_chart(build_resolution_rate_bar(summaries, banks), use_container_width=True)
+    st.plotly_chart(build_resolution_rate_bar(summaries, banks), width="stretch")
 
     # ── Trend ─────────────────────────────────────────────────────────────────
     section_divider("Monthly Complaint Trend")
-    st.plotly_chart(build_complaint_trend(complaints, banks), use_container_width=True)
+    st.plotly_chart(build_complaint_trend(complaints, banks), width="stretch")
 
     # ── Table ─────────────────────────────────────────────────────────────────
     section_divider("Complaint Detail Table")
@@ -81,7 +81,7 @@ def render(result: PipelineResult):
     if not df.empty:
         st.dataframe(
             df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             column_config={
                 "Institution": st.column_config.TextColumn("Institution", width="medium"),

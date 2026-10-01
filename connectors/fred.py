@@ -83,6 +83,28 @@ class FREDConnector(BaseConnector):
             logger.warning(f"FRED series {series_id} failed: {e}")
         return None
 
+    def history(self, series_id: str = "DFF", days: int = 365) -> List[dict]:
+        """Ascending [{'date', 'value'}] observations for a series. Empty list when unavailable."""
+        if not settings.has_fred:
+            return []
+        try:
+            date_from = (datetime.utcnow() - timedelta(days=days)).strftime("%Y-%m-%d")
+            data = self._get(f"{FRED_BASE}/series/observations", params={
+                "series_id": series_id,
+                "api_key": settings.fred_api_key,
+                "file_type": "json",
+                "observation_start": date_from,
+                "sort_order": "asc",
+            })
+            return [
+                {"date": o["date"], "value": float(o["value"])}
+                for o in data.get("observations", [])
+                if o.get("value") not in (".", None, "")
+            ]
+        except Exception as e:
+            logger.warning(f"FRED history {series_id} failed: {e}")
+            return []
+
     def _fallback_rates(self) -> List[FedRate]:
         today = datetime.utcnow().strftime("%Y-%m-%d")
         result = []

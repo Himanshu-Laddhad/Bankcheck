@@ -49,16 +49,16 @@ def render(result: PipelineResult):
         "Bubble size = number of applications. Green = approval rate ≥70%.",
         "info"
     )
-    st.plotly_chart(build_approval_rate_scatter(summaries), use_container_width=True)
+    st.plotly_chart(build_approval_rate_scatter(summaries), width="stretch")
 
     # ── Approval Rate Bar + Denial Reasons ───────────────────────────────────
     col1, col2 = st.columns(2)
     with col1:
         section_divider("Approval Rates by Lender")
-        st.plotly_chart(build_approval_rate_bar(summaries, banks), use_container_width=True)
+        st.plotly_chart(build_approval_rate_bar(summaries, banks), width="stretch")
     with col2:
         section_divider("Why Applications Are Denied")
-        st.plotly_chart(build_denial_reasons_bar(summaries, banks), use_container_width=True)
+        st.plotly_chart(build_denial_reasons_bar(summaries, banks), width="stretch")
 
     # ── Table ─────────────────────────────────────────────────────────────────
     section_divider("Lender Detail Table")
@@ -66,7 +66,7 @@ def render(result: PipelineResult):
     if not df.empty:
         st.dataframe(
             df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             column_config={
                 "Institution": st.column_config.TextColumn("Institution", width="medium"),

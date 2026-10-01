@@ -48,15 +48,15 @@ def render(result: PipelineResult):
         f"the majority of interest income instead of passing it to customers.",
         "info"
     )
-    st.plotly_chart(build_savings_rate_bar(banks, FED_RATE), use_container_width=True)
+    st.plotly_chart(build_savings_rate_bar(banks, FED_RATE), width="stretch")
 
     # ── CD Rates ──────────────────────────────────────────────────────────────
     section_divider("12-Month CD Rates")
     col1, col2 = st.columns(2)
     with col1:
-        st.plotly_chart(build_cd_rate_bar(banks), use_container_width=True)
+        st.plotly_chart(build_cd_rate_bar(banks), width="stretch")
     with col2:
-        st.plotly_chart(build_credit_card_apr_bar(banks, FED_RATE), use_container_width=True)
+        st.plotly_chart(build_credit_card_apr_bar(banks, FED_RATE), width="stretch")
 
     # ── Rate Pass-Through ─────────────────────────────────────────────────────
     section_divider("Rate Pass-Through Analysis")
@@ -65,14 +65,14 @@ def render(result: PipelineResult):
         "This chart shows what % of the Fed rate each bank actually passes to depositors.",
         "warning"
     )
-    st.plotly_chart(build_rate_pass_through_chart(FED_RATE), use_container_width=True)
+    st.plotly_chart(build_rate_pass_through_chart(FED_RATE), width="stretch")
 
     # ── Comparison Table ──────────────────────────────────────────────────────
     section_divider("Full Rate Comparison Table")
     df = build_rate_comparison_table(banks)
     st.dataframe(
         df,
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         column_config={
             "Institution": st.column_config.TextColumn("Institution", width="medium"),

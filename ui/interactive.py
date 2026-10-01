@@ -37,15 +37,15 @@ def hero_section():
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        if st.button("💰 Best Savings\nHighest APY", key="quick_savings", use_container_width=True):
+        if st.button("💰 Best Savings\nHighest APY", key="quick_savings", width="stretch"):
             st.session_state.quick_pick = "savings"
     
     with col2:
-        if st.button("🏠 Best Mortgage\nTop Approval Rate", key="quick_mortgage", use_container_width=True):
+        if st.button("🏠 Best Mortgage\nTop Approval Rate", key="quick_mortgage", width="stretch"):
             st.session_state.quick_pick = "mortgage"
     
     with col3:
-        if st.button("💳 Best Credit Card\nLowest APR", key="quick_card", use_container_width=True):
+        if st.button("💳 Best Credit Card\nLowest APR", key="quick_card", width="stretch"):
             st.session_state.quick_pick = "credit_card"
 
 
@@ -269,7 +269,7 @@ def savings_calculator(result: PipelineResult):
         bargap=0.3,
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 # ── Bank Matcher Quiz ─────────────────────────────────────────────────────
@@ -332,7 +332,7 @@ def bank_matcher_quiz():
         
         st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
         
-        if st.button("🎯 Show My Matches", type="primary", use_container_width=True):
+        if st.button("🎯 Show My Matches", type="primary", width="stretch"):
             st.session_state.show_quiz_results = True
     
     # Show results if quiz completed
